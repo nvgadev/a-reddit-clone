@@ -9,7 +9,7 @@ pipeline {
         APP_NAME = "nvga-reddit-clone-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "nvga999"
-        DOCKER_PASS = 'docker'
+        DOCKER_PASS = 'docker_hub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
     }
