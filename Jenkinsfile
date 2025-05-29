@@ -5,7 +5,7 @@ pipeline {
         nodejs 'node17'
     }
     environment {
-        SCANNER_HOME = tool 'sonar-scanner'
+        SCANNER_HOME = tool 'sonar_scanner'
         APP_NAME = "nvga-reddit-clone-pipeline"
         RELEASE = "1.0.0"
         DOCKER_USER = "nvga999"
