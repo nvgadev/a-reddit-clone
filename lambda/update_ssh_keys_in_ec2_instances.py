@@ -4,8 +4,8 @@ import boto3
 import json
 
 def lambda_handler(event, context):
-    region = 'us-west-2'  # change if needed
-    secret_name = 'ssh-key-pair'  # your secret name
+    region = 'us-west-2'
+    secret_name = 'ssh-key-pair'
 
     # Step 1: Get public key from Secrets Manager
     secrets_client = boto3.client('secretsmanager', region_name=region)
