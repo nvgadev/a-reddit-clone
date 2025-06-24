@@ -7,7 +7,7 @@ pipeline {
     environment {
         SCANNER_HOME = tool 'sonar_scanner'
         APP_NAME = "nvga-reddit-clone-pipeline"
-        RELEASE = "1.0.0"
+        RELEASE = "1.0.1"
         DOCKER_USER = "nvga999"
         DOCKER_PASS = 'docker_hub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
@@ -77,13 +77,15 @@ pipeline {
                  }
              }
          }
-	 // stage("Trigger CD Pipeline") {
-  //           steps {
-  //               script {
-  //                   sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-65-2-187-142.ap-south-1.compute.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
-  //               }
-  //           }
-  //        }
+	 stage("Trigger CD Pipeline") {
+            steps {
+                build job: 'Reddit-CD-pipeline',
+                    parameters: [
+                        string(name: 'IMAGE_TAG', value: env.IMAGE_TAG)
+                    ],
+                    wait: true
+            }
+         }
      }
      post {
         always {
